@@ -1,14 +1,11 @@
-set clipboard+=unnamed
-set clipboard+=ideaput
-set commentary
-set NERDTree
-set multiple-cursors
+set multicursor
 set incsearch
+set easymotion
 
 """ The Escape button
 map <C-c> <Esc>
 
-""" The Leader Key
+""" Map leader to space ---------------------
 let mapleader=" "
 
 sethandler <c-j> a:vim
@@ -25,9 +22,6 @@ nnoremap <Leader>n :action NextWindow<CR>
 nnoremap <Leader>q :action CloseContent<CR>
 
 """ Searching and Source Code Navigation
-nnoremap <c-/> :action FindInPath<CR>
-nnoremap <c-a> :action GotoAction<CR>
-nnoremap <c-f> :action GotoFile<CR>
 nnoremap <leader>u :action FindUsages<CR>
 nnoremap <leader>s :action GotoRelated<CR>
 nnoremap <leader>h :action CallHierarchy<CR>
@@ -42,6 +36,7 @@ nnoremap gt :action GotoTest<CR>
 nnoremap gb :action Back<CR>
 nnoremap gf :action Forward<CR>
 
+nmap <leader>c :action CommentByLineComment<CR>
 nmap <C-n> <Plug>NextWholeOccurrence
 xmap <C-n> <Plug>NextWholeOccurrence
 nmap g<C-n> <Plug>NextOccurrence
@@ -50,4 +45,10 @@ nmap <C-x> <Plug>SkipOccurrence
 xmap <C-x> <Plug>SkipOccurrence
 nmap <C-p> <Plug>RemoveOccurrence
 xmap <C-p> <Plug>RemoveOccurrence
+
+vmap <S-J> <Action>(MoveLineDown)
+vmap <S-K> <Action>(MoveLineUp)
+
+map <leader>J <Plug>(easymotion-s)
+map <leader>j <Plug>(easymotion-f)
 
