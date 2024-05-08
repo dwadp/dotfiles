@@ -28,7 +28,6 @@ keymap("n", "<c-left>", ":vertical resize +2<cr>", opts)
 keymap("n", "<tab>", ":bnext<cr>", opts) -- Next Tab 
 keymap("n", "<s-tab>", ":bprevious<cr>", opts) -- Previous tab
 keymap("n", "<leader>h", ":nohlsearch<cr>", opts) -- No highlight search
-keymap("n", "<leader>q", ":bdelete<cr>", opts) -- No highlight search
 
 -- move text up and down
 keymap("n", "<a-j>", "<esc>:m .+1<cr>==gi", opts) -- Alt-j 
