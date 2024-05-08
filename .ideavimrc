@@ -1,3 +1,9 @@
+set clipboard=unnamedplus
+set clipboard^=ideaput
+
+""" Plugin settings -------------------------
+set commentary
+set NERDTree
 set multicursor
 set incsearch
 set easymotion
@@ -51,4 +57,3 @@ vmap <S-K> <Action>(MoveLineUp)
 
 map <leader>J <Plug>(easymotion-s)
 map <leader>j <Plug>(easymotion-f)
-
