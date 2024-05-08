@@ -68,8 +68,10 @@ return {
 
     -- custom mappings
     vim.keymap.set('n', '<leader>tc', api.tree.change_root_to_node, { noremap = true, desc = "Change root to the current node" })
-    vim.keymap.set('n', '<leader>te', api.tree.open, { noremap = true, desc = "Open the sidebar file tree" })
+    vim.keymap.set('n', '<leader>to', api.tree.open, { noremap = true, desc = "Open the sidebar file tree" })
     vim.keymap.set('n', '<leader>tr', api.tree.reload, { noremap = true, desc = "Reload the sidebar file tree" })
     vim.keymap.set('n', '<leader>tx', api.tree.close, { noremap = true, desc = "Close the sidebar file tree" })
+    vim.keymap.set('n', '<leader>t+', ":NvimTreeResize +10<cr>", { noremap = true, desc = "Increase the size of the tree view by 10 width"})
+    vim.keymap.set('n', '<leader>t-', ":NvimTreeResize -10<cr>", { noremap = true, desc = "Decrease the size of the tree view by 10 width"})
   end
 }
