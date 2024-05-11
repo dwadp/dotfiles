@@ -24,7 +24,7 @@ opt.smartcase = true
 opt.smartindent = true
 opt.spelllang = { "en" }
 opt.tabstop = 4
-opt.termguicolors = true
+opt.termguicolors = false
 opt.timeoutlen = 500
 opt.undofile = true
 opt.undolevels = 10000
@@ -32,3 +32,4 @@ opt.wrap = false -- Disable line wrap
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+vim.o.termguicolors = false   
