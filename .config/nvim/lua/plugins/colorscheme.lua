@@ -1,14 +1,25 @@
 return {
-  "oxfist/night-owl.nvim",
+  "neanias/everforest-nvim",
+  version = false,
   lazy = false,
   priority = 1000,
   config = function()
-    -- load the colorscheme here
-    require("night-owl").setup()
-    vim.cmd.colorscheme("night-owl")
+    require("everforest").setup({})
+
+    vim.cmd.colorscheme("everforest")
   end,
 }
 
+-- return {
+--   "oxfist/night-owl.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   config = function()
+--     -- load the colorscheme here
+--     require("night-owl").setup()
+--     vim.cmd.colorscheme("night-owl")
+--   end,
+-- }
 
 
 --  Configuration for tokyonight theme
