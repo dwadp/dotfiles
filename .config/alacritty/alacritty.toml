@@ -7,7 +7,6 @@ TERM = "screen-256color"
 padding.x = 0
 padding.y = 0
 
-decorations = "Buttonless"
 opacity = 1.0
 blur = false
 
@@ -25,3 +24,6 @@ osc52 = "CopyPaste"
 
 [mouse]
 bindings = [{ mouse = "Right", mods = "Control", action = "Paste" }]
+
+[keyboard]
+bindings = [{ key = "N", mods = "Control | Shift", action = "CreateNewWindow" }]
