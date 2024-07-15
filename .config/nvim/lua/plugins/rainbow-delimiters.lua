@@ -27,5 +27,5 @@ return {
     require("ibl").setup({ scope = { highlight = highlight } })
 
     hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-  end
+  end,
 }

@@ -28,6 +28,9 @@ return {
       callback = function(ev)
         local opts = { buffer = ev.buf, silent = true }
 
+        -- Disable inline diagnostic
+        vim.diagnostic.config({ virtual_text = false })
+
         -- set keybinds
         opts.desc = "Show LSP references"
         keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
@@ -43,41 +46,6 @@ return {
 
         opts.desc = "Show LSP type definitions"
         keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
-
-        opts.desc = "See available code actions"
-        keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
-
-        opts.desc = "Smart rename"
-        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
-
-        opts.desc = "Show buffer diagnostics"
-        keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
-
-        opts.desc = "Show line diagnostics"
-        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
-
-        opts.desc = "Go to previous error"
-        keymap.set("n", "[e", function()
-          vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
-        end, opts)
-
-        opts.desc = "Go to next error"
-        keymap.set("n", "]e", function()
-          vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
-        end, opts)
-
-        opts.desc = "Go to previous warning"
-        keymap.set("n", "[w", function()
-          vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
-        end, opts)
-
-        opts.desc = "Go to next warning"
-        keymap.set("n", "]w", function()
-          vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
-        end, opts)
-
-        opts.desc = "Show documentation for what is under cursor"
-        keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
 
         opts.desc = "Restart LSP"
         keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
@@ -105,6 +73,12 @@ return {
       ["rust_analyzer"] = function() end,
       ["gopls"] = function()
         lspconfig["gopls"].setup({
+          capabilities = capabilities,
+        })
+      end,
+      ["intelephense"] = function()
+        lspconfig["intelephense"].setup({
+          filetypes = { "php", "blade" },
           capabilities = capabilities,
         })
       end,

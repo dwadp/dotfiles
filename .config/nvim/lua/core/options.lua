@@ -19,7 +19,7 @@ opt.scrolloff = 5
 opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 opt.shiftround = true
 opt.shiftwidth = 4
-opt.shortmess:append { W = true, I = true, c = true }
+opt.shortmess:append({ W = true, I = true, c = true })
 opt.smartcase = true
 opt.smartindent = true
 opt.spelllang = { "en" }
@@ -30,6 +30,15 @@ opt.undofile = true
 opt.undolevels = 10000
 opt.wrap = false -- Disable line wrap
 
--- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
-vim.o.termguicolors = false   
+vim.o.termguicolors = true
+vim.g.have_nerd_font = true
+
+-- Set listchars to space to hide the tab and other characters
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+-- vim.opt.listchars = {
+--   tab = "  ",
+--   lead = " ",
+--   trail = " ",
+-- }
