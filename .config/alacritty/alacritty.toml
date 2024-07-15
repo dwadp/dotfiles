@@ -7,14 +7,14 @@ TERM = "screen-256color"
 padding.x = 0
 padding.y = 0
 
-opacity = 1.0
-blur = false
+opacity = 0.9
+blur = true
 
 startup_mode = "Maximized"
 
 [font]
-normal.family = "CaskaydiaCove Nerd Font"
-size = 11
+normal.family = "JetBrainsMono Nerd Font"
+size = 11.3
 
 [selection]
 save_to_clipboard = true
