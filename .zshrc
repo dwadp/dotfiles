@@ -12,29 +12,42 @@ setopt hist_verify
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting ssh-agent)
+bindkey -e
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey "^[[7~" beginning-of-line
+bindkey "^[[8~" end-of-line
+
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
+
+bindkey "\e[2~" overwrite-mode
+bindkey "\e[3~" delete-char
+bindkey "^[Od" backward-word
+bindkey "\e[1;5D" backward-word
+bindkey "^[Oc" forward-word
+bindkey "\e[1;5C" forward-word
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+bindkey "\e[5~" history-beginning-search-backward
+bindkey "\e[6~" history-beginning-search-forward
+bindkey "^W" backward-delete-word
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
 alias ls='exa --icons'
-alias ll='exa -lbF --icons' # list, size, type, git
-alias llm='exa -lbGd --icons --sort=modified' # long list, modified date sort
+alias ll='exa -lbFg --icons' # list, size, type, git
+alias llm='exa -lbGdg --icons --sort=modified' # long list, modified date sort
 alias la='exa -lbhHigUmuSa --icons --time-style=long-iso --color-scale' # all list
 alias lx='exa -lbhHigUmuSa@ --icons --time-style=long-iso --color-scale' # all + extended list
 alias lS='exa -1 --icons' # one column, just names
 alias lt='exa --tree --level=2 --icons' # tree
 
 alias cd='z'
-
 alias fzp='fzf --preview "bat --color=always {}" --preview-window "~3"'
-
-# Alias fd-find
 alias fd='fdfind'
-
+alias lg='lazygit'
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 
 # bun completions
@@ -42,6 +55,8 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 
 export VOLTA_HOME=$HOME/.volta
 export VOLTA_FEATURE_PNPM=1
+
+export GOROOT=/usr/local/go
 
 export PATH="$PATH:/opt/nvim-linux64/bin:/$HOME/.local/bin"
 export BUN_INSTALL="$HOME/.bun"
@@ -53,11 +68,56 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export PATH=$PATH:$VOLTA_HOME/bin
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$PATH:$HOME/.local/bin"
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
+# Options to fzf command
+export FZF_COMPLETION_OPTS='--border --info=inline'
+
+# Use fd (https://github.com/sharkdp/fd) for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude ".git" . "$1"
+}
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
+zinit light zdharma-continuum/fast-syntax-highlighting
