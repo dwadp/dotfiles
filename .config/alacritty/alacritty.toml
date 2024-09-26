@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/themes/themes/everforest_dark.toml"]
+import = ["~/.config/alacritty/themes/themes/nord.toml"]
 
 [env]
 TERM = "screen-256color"
@@ -13,8 +13,8 @@ blur = true
 startup_mode = "Maximized"
 
 [font]
-normal.family = "JetBrainsMono Nerd Font"
-size = 11.3
+normal.family = "CaskaydiaCove Nerd Font"
+size = 12
 
 [selection]
 save_to_clipboard = true
