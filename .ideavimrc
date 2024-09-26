@@ -57,3 +57,6 @@ vmap <S-K> <Action>(MoveLineUp)
 
 map <leader>J <Plug>(easymotion-s)
 map <leader>j <Plug>(easymotion-f)
+
+vnoremap > >gv
+vnoremap < <gv
