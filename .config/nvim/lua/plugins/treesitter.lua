@@ -9,6 +9,7 @@ return {
         "vimdoc",
         "query",
         "go",
+        "php",
         "rust",
         "yaml",
         "toml",

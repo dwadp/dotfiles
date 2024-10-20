@@ -8,7 +8,11 @@ return {
     local lspsaga = require("lspsaga")
     local keymap = vim.api.nvim_set_keymap
 
-    lspsaga.setup({})
+    lspsaga.setup({
+      lightbulb = {
+        enable = false,
+      },
+    })
 
     local opts = { noremap = true, silent = true }
 

@@ -70,7 +70,11 @@ return {
           capabilities = capabilities,
         })
       end,
-      ["rust_analyzer"] = function() end,
+      ["rust_analyzer"] = function()
+        lspconfig["rust_analyzer"].setup({
+          capabilities = capabilities,
+        })
+      end,
       ["gopls"] = function()
         lspconfig["gopls"].setup({
           capabilities = capabilities,
@@ -108,6 +112,12 @@ return {
               },
             },
           },
+        })
+      end,
+      ["zls"] = function()
+        lspconfig["zls"].setup({
+          cmd = { "/usr/local/bin/zls" },
+          capabilities = capabilities,
         })
       end,
     })

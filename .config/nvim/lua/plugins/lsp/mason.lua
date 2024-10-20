@@ -33,7 +33,7 @@ return {
     mason_lspconfig.setup({
       ensure_installed = { -- See: https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers for more information
         "lua_ls",
-        "html",
+        "ast_grep",
         "gopls",
         "golangci_lint_ls",
         "tsserver",
@@ -65,6 +65,7 @@ return {
         "revive",
         "shellcheck",
         "shfmt",
+        "zls",
       },
       auto_update = true,
       run_on_start = true,
