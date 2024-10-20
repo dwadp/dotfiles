@@ -1,5 +1,7 @@
 lvim.leader = "space"
 
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+
 -- Remap the default keybindings for switching between buffers
 lvim.builtin.which_key.mappings["bn"] = {}
 lvim.builtin.which_key.mappings["bb"] = {}
@@ -9,6 +11,8 @@ lvim.keys.normal_mode["<S-h>"] = "<cmd>BufferLineCyclePrev<cr>"
 
 lvim.builtin.which_key.mappings["bq"] = { "<cmd>BufferKill<cr>", "Close" }
 
+lvim.keys.normal_mode["<leader>mp"] = "<cmd>MarkdownPreviewToggle<cr>"
+
 local telescope_ok, _ = pcall(require, "telescope")
 
 if telescope_ok then
@@ -17,8 +21,8 @@ if telescope_ok then
   -- Remove the default binding "<leader>f" to open files and remap it with "<leader>ff" instead
   lvim.builtin.which_key.mappings["f"] = {}
   lvim.builtin.which_key.mappings["ff"] = { builtin.find_files, "Find files" }
-
   lvim.builtin.which_key.mappings["fb"] = { builtin.buffers, "Open buffers in current neovim instance" }
+  lvim.builtin.which_key.mappings["fg"] = { builtin.live_grep, "Live grep any files" }
 end
 
 local cmp = require("lvim.utils.modules").require_on_index "cmp"
@@ -46,3 +50,10 @@ lvim.builtin.cmp.mapping["<Tab>"] = cmp_mapping(function(fallback)
     fallback()
   end
 end, { "i", "s" })
+
+lvim.builtin.which_key.mappings["t"] = {
+  name = "+Terminal",
+  f = { "<cmd>ToggleTerm<cr>", "Floating terminal" },
+  v = { "<cmd>2ToggleTerm size=30 direction=vertical<cr>", "Split vertical" },
+  h = { "<cmd>2ToggleTerm size=30 direction=horizontal<cr>", "Split horizontal" },
+}
