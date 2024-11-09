@@ -29,7 +29,6 @@ opt.timeoutlen = 500
 opt.undofile = true
 opt.undolevels = 10000
 opt.wrap = false -- Disable line wrap
-opt.termsync = false
 opt.signcolumn = "yes"
 
 vim.g.markdown_recommended_style = 0
