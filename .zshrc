@@ -36,13 +36,13 @@ bindkey "^W" backward-delete-word
 
 export PATH="$PATH:/opt/nvim-linux64/bin"
 
-alias ls='exa --icons'
-alias ll='exa -lbFg --icons' # list, size, type, git
-alias llm='exa -lbGdg --icons --sort=modified' # long list, modified date sort
-alias la='exa -lbhHigUmuSa --icons --time-style=long-iso --color-scale' # all list
-alias lx='exa -lbhHigUmuSa@ --icons --time-style=long-iso --color-scale' # all + extended list
-alias lS='exa -1 --icons' # one column, just names
-alias lt='exa --tree --level=2 --icons' # tree
+alias ls='eza --icons'
+alias ll='eza -lbFg --icons' # list, size, type, git
+alias llm='eza -lbGdg --icons --sort=modified' # long list, modified date sort
+alias la='eza -lbhHigUmuSa --icons --time-style=long-iso --color-scale' # all list
+alias lx='eza -lbhHigUmuSa@ --icons --time-style=long-iso --color-scale' # all + extended list
+alias lS='eza -1 --icons' # one column, just names
+alias lt='eza --tree --level=2 --icons' # tree
 
 alias cd='z'
 alias fzp='fzf --preview "bat --color=always {}" --preview-window "~3"'
@@ -70,6 +70,13 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 # Options to fzf command
 export FZF_COMPLETION_OPTS='--border --info=inline'
 
+# fnm
+FNM_PATH="/home/dwadp/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/dwadp/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
+
 # Use fd (https://github.com/sharkdp/fd) for listing path candidates.
 # - The first argument to the function ($1) is the base path to start traversal
 # - See the source code (completion.{bash,zsh}) for the details.
@@ -86,6 +93,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 . "$HOME/.atuin/bin/env"
 
