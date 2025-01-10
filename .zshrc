@@ -8,6 +8,8 @@ setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
 
+zle_highlight=('paste:none')
+
 # completion using arrow keys (based on history)
 bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
@@ -34,8 +36,6 @@ bindkey "\e[5~" history-beginning-search-backward
 bindkey "\e[6~" history-beginning-search-forward
 bindkey "^W" backward-delete-word
 
-export PATH="$PATH:/opt/nvim-linux64/bin"
-
 alias ls='eza --icons'
 alias ll='eza -lbFg --icons' # list, size, type, git
 alias llm='eza -lbGdg --icons --sort=modified' # long list, modified date sort
@@ -49,12 +49,15 @@ alias fzp='fzf --preview "bat --color=always {}" --preview-window "~3"'
 alias fd='fdfind'
 alias lg='lazygit'
 alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+alias php='twig php'
+alias composer='twig composer'
 
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
 
 export GOROOT=/usr/local/go
 
+export PATH="${GOROOT}/bin:$PATH"
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:$HOME/.local/bin"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
@@ -64,6 +67,10 @@ export PATH=$PATH:/usr/local/bin/protoc/bin
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/opt/chromium-browser"
+
+# Add deno completions to search path
+if [[ ":$FPATH:" != *":/home/dwadp/.zsh/completions:"* ]]; then export FPATH="/home/dwadp/.zsh/completions:$FPATH"; fi
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
@@ -128,3 +135,6 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+. "/home/dwadp/.deno/env"
+
+export PODMAN_COMPOSE_WARNING_LOGS=false
