@@ -67,10 +67,16 @@ export PATH=$PATH:/usr/local/bin/protoc/bin
 export PATH="$PATH:$HOME/.cargo/bin"
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/share/pnpm"
 export PATH="$PATH:/opt/chromium-browser"
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 # Add deno completions to search path
-if [[ ":$FPATH:" != *":/home/dwadp/.zsh/completions:"* ]]; then export FPATH="/home/dwadp/.zsh/completions:$FPATH"; fi
+if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.zsh/completions:$FPATH"; fi
 
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
@@ -78,9 +84,9 @@ fpath+=${ZDOTDIR:-~}/.zsh_functions
 export FZF_COMPLETION_OPTS='--border --info=inline'
 
 # fnm
-FNM_PATH="/home/dwadp/.local/share/fnm"
+FNM_PATH="$HOME/.local/share/fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/dwadp/.local/share/fnm:$PATH"
+  export PATH="$HOME/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
 
@@ -131,10 +137,23 @@ zinit light-mode for \
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
 zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light Aloxaf/fzf-tab
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-. "/home/dwadp/.deno/env"
+. "$HOME/.deno/env"
 
 export PODMAN_COMPOSE_WARNING_LOGS=false
+export PATH="$HOME/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="$HOME/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+export FPATH="$HOME/.docker/completions:$FPATH"
+
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+ibus-daemon -dr
+
+# Docker completions (https://docs.docker.com/engine/cli/completion/#zsh)
+autoload -Uz compinit
+compinit
