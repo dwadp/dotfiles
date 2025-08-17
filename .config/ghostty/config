@@ -1,0 +1,9 @@
+background-opacity = 0.95
+background-blur = true
+window-decoration = none
+
+# Download the theme files here: https://github.com/m1yon/ghostty-night-owl
+theme = NightOwlDark
+
+font-family = "Monaspace Neon"
+font-size = 11
