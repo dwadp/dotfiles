@@ -52,6 +52,15 @@ alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
 alias php='twig php'
 alias composer='twig composer'
 
+alias k=kubectl
+alias kgp='kubectl get pods'
+alias kdp='kubectl describe pod'
+alias kgs='kubectl get services'
+
+autoload -Uz compinit
+autoload -Uz _zinit
+compinit
+
 # bun completions
 [ -s "$HOME/.bun/_bun" ] && source "/$HOME/.bun/_bun"
 
@@ -70,6 +79,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/share/pnpm"
 export PATH="$PATH:/opt/chromium-browser"
 export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PATH":/home/dwadp/.vector/bin
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -81,7 +91,8 @@ if [[ ":$FPATH:" != *":$HOME/.zsh/completions:"* ]]; then export FPATH="$HOME/.z
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # Options to fzf command
-export FZF_COMPLETION_OPTS='--border --info=inline'
+export FZF_COMPLETION_OPTS='--border --info=inline --hidden --walker file,dir,follow,hidden'
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 
 # fnm
 FNM_PATH="$HOME/.local/share/fnm"
@@ -122,7 +133,6 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
 fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
 # Load a few important annexes, without Turbo
@@ -154,6 +164,12 @@ export QT_IM_MODULE=ibus
 export XMODIFIERS=@im=ibus
 ibus-daemon -dr
 
+source <(kubectl completion zsh)
+
 # Docker completions (https://docs.docker.com/engine/cli/completion/#zsh)
-autoload -Uz compinit
-compinit
+# fnm
+FNM_PATH="/home/timedoor-backend/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="$FNM_PATH:$PATH"
+  eval "`fnm env`"
+fi
