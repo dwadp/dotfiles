@@ -54,6 +54,7 @@ install_php_version() {
   local version="$1"
   local pkgs=(
     "php${version}"
+    "php${version}-cli"
     "php${version}-fpm"
     "php${version}-gd"
     "php${version}-imagick"
