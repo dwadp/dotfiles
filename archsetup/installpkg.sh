@@ -40,10 +40,16 @@ PACMAN_PKGS=(
   duf
   stow
   openbsd-netcat
-  noto-fonts-cjk
   nmap
   ncdu
   btop
+
+  noto-fonts-cjk
+  ttf-jetbrains-mono
+  ttf-jetbrains-mono-nerd
+  otf-monaspace
+  ttf-cascadia-code
+  ttf-cascadia-code-nerd
 )
 
 AUR_PKGS=(
