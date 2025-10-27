@@ -80,6 +80,9 @@ export PATH="$PATH:$HOME/.local/share/pnpm"
 export PATH="$PATH:/opt/chromium-browser"
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PATH":/home/dwadp/.vector/bin
+
+export KUBECTL_EXTERNAL_DIFF="delta"
+
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
