@@ -10,6 +10,10 @@ PACMAN_PKGS=(
   git
   zsh
   networkmanager-openvpn
+  traceroute
+  man-db
+  man-pages
+  cups-pdf
 
   neovim
   vim
@@ -43,6 +47,7 @@ PACMAN_PKGS=(
   nmap
   ncdu
   btop
+  xclip
 
   noto-fonts-cjk
   ttf-jetbrains-mono

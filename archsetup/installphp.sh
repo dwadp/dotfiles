@@ -82,6 +82,9 @@ install_php_version() {
     "php${version}-calendar"
     "php${version}-gettext"
     "php${version}-curl"
+    "php${version}-json"
+    "php${version}-xmlwriter"
+    "php${version}-xmlreader"
   )
 
   echo ">> Installing PHP ${v}: ${pkgs[*]}"
