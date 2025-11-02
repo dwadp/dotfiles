@@ -33,8 +33,13 @@ PACMAN_PKGS=(
   nmap
   openbsd-netcat
   websocat
+  ffmpeg
   vlc
   vlc-plugins-base
+  vlc-plugin-x265
+  vlc-plugin-x264
+  vlc-plugin-ffmpeg
+
   firefox
   obsidian
   bitwarden-bin
