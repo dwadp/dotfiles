@@ -14,6 +14,7 @@ PACMAN_PKGS=(
   man-db
   man-pages
   cups-pdf
+  bind-tools
 
   neovim
   vim
@@ -74,6 +75,7 @@ AUR_PKGS=(
   galaxybudsclient-bin
   microsoft-edge-stable-bin
   brave-bin
+  doggo
 )
 
 # Optional: add more packages via env, e.g.
