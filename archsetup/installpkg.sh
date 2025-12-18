@@ -15,6 +15,7 @@ PACMAN_PKGS=(
   man-pages
   cups-pdf
   bind-tools
+  tree
 
   neovim
   vim
@@ -31,6 +32,7 @@ PACMAN_PKGS=(
   ghostty
   discord
   jq
+  go-yq
   nmap
   openbsd-netcat
   websocat
@@ -78,8 +80,6 @@ AUR_PKGS=(
   doggo
 )
 
-# Optional: add more packages via env, e.g.
-# PACMAN_EXTRAS="htop unzip" AUR_EXTRAS="docker-desktop" ./installpkg.sh
 read -r -a PACMAN_EXTRAS <<< "${PACMAN_EXTRAS:-}"
 read -r -a AUR_EXTRAS <<< "${AUR_EXTRAS:-}"
 
